@@ -1,0 +1,32 @@
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+
+class MainClass {
+  public static void Main (string[] args) {
+    Console.WriteLine ("Hello World");
+    Console.WriteLine("Program start.");
+    StreamReader file = new StreamReader("input.txt");
+    int counter = 0;
+    string line;
+    List<int> myList = new List<int>();
+    while ((line = file.ReadLine()) != null)
+    {
+        myList.Add(Int32.Parse(line));
+        counter++;
+    }
+    file.Close();
+    Console.WriteLine("Done reading input");
+    Console.WriteLine($"{counter} lines read.");
+
+    int answer = 0;
+
+    int prev = myList[0];
+    for (int i = 1; i < myList.Count ; i++) {
+      if (myList[i] > prev) answer++;
+      prev = myList[i];
+    }
+    Console.WriteLine(answer);
+  }
+}
